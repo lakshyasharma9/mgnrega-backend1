@@ -60,4 +60,14 @@ router.get('/sync-data', async (req, res) => {
   }
 });
 
+router.get('/sync', async (req, res) => {
+  try {
+    await mgnregaService.syncDistrictData();
+    res.json({ message: 'Data synchronization completed successfully' });
+  } catch (error: any) {
+    console.error('Sync error:', error);
+    res.status(500).json({ error: 'Data synchronization failed', message: error.message });
+  }
+});
+
 export default router;
