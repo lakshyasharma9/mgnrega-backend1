@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: mgnrega-backend
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        fromDatabase:
+          name: mgnrega-db
+          property: connectionString
+      - key: PORT
+        value: 10000
