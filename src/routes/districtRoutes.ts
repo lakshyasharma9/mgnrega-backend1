@@ -39,8 +39,18 @@ router.get('/location/debug/:lat/:lng', async (req, res) => {
   }
 });
 
-// Sync route to manually trigger data synchronization
+// Sync routes to manually trigger data synchronization
 router.post('/sync', async (req, res) => {
+  try {
+    await mgnregaService.syncDistrictData();
+    res.json({ message: 'Data synchronization completed successfully' });
+  } catch (error: any) {
+    console.error('Sync error:', error);
+    res.status(500).json({ error: 'Data synchronization failed', message: error.message });
+  }
+});
+
+router.get('/sync-data', async (req, res) => {
   try {
     await mgnregaService.syncDistrictData();
     res.json({ message: 'Data synchronization completed successfully' });
