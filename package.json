@@ -4,9 +4,9 @@
   "description": "Backend API for Rural MGNREGA Dashboard",
   "main": "dist/server.js",
   "scripts": {
-    "start": "ts-node src/scripts/syncRealData.ts && ts-node src/server.ts",
-    "dev": "nodemon src/server.ts",
-    "build": "echo 'Build completed'",
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "ts-node src/server.ts",
     "build:watch": "tsc --watch",
     "sync-data": "ts-node src/scripts/syncRealData.ts",
     "sync-real-data": "ts-node src/scripts/syncRealData.ts"
@@ -38,7 +38,7 @@
     "api",
     "express",
     "backend",
-    "render-deploy"
+    "railway-deploy"
   ],
   "author": "Rural Development Team",
   "license": "MIT"
