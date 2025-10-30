@@ -47,8 +47,13 @@ export async function initApp() {
     await connectDB();
     console.log('✅ Database connected successfully');
 
-    dataSyncService.startScheduledSync();
-    console.log('✅ Data sync service started');
+    // Skip sync if SKIP_SYNC is true
+    if (process.env.SKIP_SYNC !== 'true') {
+      dataSyncService.startScheduledSync();
+      console.log('✅ Data sync service started');
+    } else {
+      console.log('⏭️ Data sync skipped (SKIP_SYNC=true)');
+    }
 
     return app;
   } catch (error) {
