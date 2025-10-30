@@ -6,14 +6,14 @@ interface MGNREGAApiResponse {
     district_name: string;
     state_name: string;
     district_code: string;
-    total_workers: string;
-    total_wages: string;
-    households_covered: string;
-    employment_days: string;
-    work_completed: string;
-    budget_utilized: string;
+    Total_Individuals_Worked: string;
+    Wages: string;
+    Total_Households_Worked: string;
+    Average_days_of_employment_provided_per_Household: string;
+    Number_of_Completed_Works: string;
     financial_year: string;
     month: string;
+    [key: string]: any;
   }>;
 }
 
@@ -75,11 +75,11 @@ class MGNREGAService {
           name: record.district_name,
           state: record.state_name,
           code: districtCode,
-          totalWorkers: parseInt(record.total_workers) || 0,
-          totalWages: parseFloat(record.total_wages) || 0,
-          households: parseInt(record.households_covered) || 0,
-          employmentDays: parseInt(record.employment_days) || 0,
-          workCompleted: parseInt(record.work_completed) || 0,
+          totalWorkers: parseInt(record.Total_Individuals_Worked) || 0,
+          totalWages: parseFloat(record.Wages) || 0,
+          households: parseInt(record.Total_Households_Worked) || 0,
+          employmentDays: parseInt(record.Average_days_of_employment_provided_per_Household) || 0,
+          workCompleted: parseInt(record.Number_of_Completed_Works) || 0,
           budgetUtilization:
             parseFloat(record.budget_utilized) ||
             this.randomBudgetUtilization(),
@@ -108,8 +108,8 @@ class MGNREGAService {
       "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
     ];
 
-    const baseWorkers = parseInt(record.total_workers) || 0;
-    const baseWages = parseFloat(record.total_wages) || 0;
+    const baseWorkers = parseInt(record.Total_Individuals_Worked) || 0;
+    const baseWages = parseFloat(record.Wages) || 0;
 
     return months.map((month) => ({
       month,
